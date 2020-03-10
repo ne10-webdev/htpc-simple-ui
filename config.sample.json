@@ -1,4 +1,5 @@
 {
+  "port": 4000,
   "title": "Raspberry PI",
   "storagePath": "/home/user/htpc-storage",
   "player": "omxplayer"
