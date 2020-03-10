@@ -1,6 +1,4 @@
 const http = require('http');
-const path = require('path');
-const fs = require('fs');
 
 const player = require('./modules/player.js');
 const config = require('./config.json');
@@ -11,33 +9,15 @@ http.createServer(function (req, res) {
   res.end();
   switch(req.url) {
     case '/play':
-      play();
+      player.playAll();
       break;
     case '/stop':
-      stop();
+      player.stop();
       break;
     case '/skip':
-      skip();
+      player.skip();
       break;
     default:
       break;
   }  
 }).listen(config.port);
-
-
-async function play() {
-  let files = fs.readdirSync(config.storagePath);
-  for(let file of files) {
-    await player.play(path.join(config.storagePath, file)).catch(e => {
-      console.log(e);
-    });
-  }
-}
-
-function stop() {
-  player.stop();
-}
-
-function skip() {
-  
-}
